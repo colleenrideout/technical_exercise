@@ -1,0 +1,5 @@
+# analysis.py
+matplotlib >= 3.9.0
+pandas >= 2.2.0
+scikit-learn >= 1.6.1
+numpy >= 2.2.0
