@@ -1,0 +1,35 @@
+Columns with 100% null value rates: ['SafetyCommIssuedEnum_DisplayEng', 'SafetyCommIssuedEnum_DisplayFre', 'AirportDescription', 'InitialPositionEnum', 'InitialPositionEnum_DisplayEng', 'InitialPositionEnum_DisplayFre', 'FinalPositionEnum', 'FinalPositionEnum_DisplayEng', 'FinalPositionEnum_DisplayFre'].
+100% count: 9
+
+Columns with 90-100% null value rates: ['BearingID', 'BearingID_Abbr', 'BearingID_CompassPoint', 'BearingID_Highest', 'BearingID_Lowest', 'BearingID_Middle', 'Distance', 'DistanceEnum', 'DistanceEnumEng', 'DistanceEnumFre', 'OceanID', 'OceanID_DisplayEng', 'OceanID_DisplayFre', 'SkyCondID', 'SkyCondID_DisplayEng', 'SkyCondID_DisplayFre', 'InflightIcingCondEnum', 'InflightIcingCondEnum_DisplayEng', 'InflightIcingCondEnum_DisplayFre', 'GeneralWeatherID', 'GeneralWeatherID_DisplayEng', 'GeneralWeatherID_DisplayFre', 'Temperature', 'TemperatureEnum', 'TemperatureEnum_DisplayEng', 'TemperatureEnum_DisplayFre', 'SwDirection', 'SwVariableDirIND', 'SwVariableDirIND_DisplayEng', 'SwVariableDirIND_DisplayFre', 'SwSpeed', 'SwPeakGus', 'SwCrosswind', 'SwCrosswindEnum', 'SwCrosswindEnum_DisplayEng', 'SwCrosswindEnum_DisplayFre', 'SwTallWind', 'VisibilyCeiling', 'Visibility', 'RVRUnlimitedIND', 'RVRUnlimitedIND_DisplayEng', 'RVRUnlimitedIND_DisplayFre', 'RVRA', 'RVRB', 'WeatherPhenomenaTypeID', 'WeatherPhenomenaTypeID_DisplayEng', 'WeatherPhenomenaTypeID_DisplayFre', 'WeatherPhenomenaDescID', 'WeatherPhenomenaDescID_DisplayEng', 'WeatherPhenomenaDescID_DisplayFre', 'WeatherPhenomenaIntensityID', 'WeatherPhenomenaIntensityID_DisplayEng', 'WeatherPhenomenaIntensityID_DisplayFre', 'LandingTakeOffAirportID', 'LandingTakeOffAirportID_AirportName', 'AarfCategoryID', 'AarfCategoryID_DisplayEng', 'AarfCategoryID_DisplayFre', 'ControlStatusID', 'ControlStatusID_DisplayEng', 'ControlStatusID_DisplayFre', 'ApproachTypeID', 'ApproachTypeID_DisplayEng', 'ApproachTypeID_DisplayFre', 'ApproachRunwayID', 'ApproachRunwayID_DisplayEng', 'ApproachRunwayID_DisplayFre', 'RunwayID', 'RunwayID_DisplayEng', 'RunwayID_DisplayFre', 'TaxiwayID', 'TaxiwayID_DisplayEng', 'TaxiwayID_DisplayFre', 'PadID', 'PadID_DisplayEng', 'PadID_DisplayFre', 'HelicopterTakeOffLandingSiteID', 'HelicopterTakeOffLandingSiteID_DisplayEng', 'HelicopterTakeOffLandingSiteID_DisplayFre', 'RunwaySurfaceTypeID', 'RunwaySurfaceTypeID_DisplayEng', 'RunwaySurfaceTypeID_DisplayFre', 'RunwaySurfaceID', 'RunwaySurfaceID_DisplayEng', 'RunwaySurfaceID_DisplayFre', 'RunwaySlopeID', 'RunwaySlopeID_DisplayEng', 'RunwaySlopeID_DisplayFre', 'ResaSurfaceTypeID', 'ResaSurfaceTypeID_DisplayEng', 'ResaSurfaceTypeID_DisplayFre', 'WaveHeightID', 'WaveHeightID_DisplayEng', 'WaveHeightID_DisplayFre', 'WaterSurfaceConditionID', 'WaterSurfaceConditionID_DisplayEng', 'WaterSurfaceConditionID_DisplayFre', 'AreaTypeDetailID', 'AreaTypeDetailID_DisplayEng', 'AreaTypeDetailID_DisplayFre', 'ToLdgRelToSwellID', 'ToLdgRelToSwellID_DisplayEng', 'ToLdgRelToSwellID_DisplayFre', 'InitialPositionID', 'InitialPositionID_DisplayEng', 'InitialPositionID_DisplayFre', 'FinalPositionID', 'FinalPositionID_DisplayEng', 'FinalPositionID_DisplayFre', 'LandingTakeOffLocation', 'ResaLength', 'ResaWidth', 'TouchdownThreshold', 'TouchdownThresholdEnum', 'TouchdownThresholdEnum_DisplayEng', 'TouchdownThresholdEnum_DisplayFre', 'TouchdownCentreline', 'FinalThreshold', 'FinalThresholdEnum', 'FinalThresholdEnum_DisplayEng', 'FinalThresholdEnum_DisplayFre', 'FinalCentreline', 'FullProcedureIND', 'FullProcedureIND_DisplayEng', 'FullProcedureIND_DisplayFre', 'SurfaceContaminationID', 'SurfaceContaminationID_DisplayEng', 'SurfaceContaminationID_DisplayFre']
+90% count: 128
+
+Columns with 80-90% null value rates: ['LightCondID', 'LightCondID_DisplayEng', 'LightCondID_DisplayFre', 'SwDirectionEnum', 'SwDirectionEnum_DisplayEng', 'SwDirectionEnum_DisplayFre', 'TakeOffLandingTypeID', 'TakeOffLandingTypeID_DisplayEng', 'TakeOffLandingTypeID_DisplayFre', 'AerodromeOperatorID', 'AerodromeOperatorID_DisplayEng', 'AerodromeOperatorID_DisplayFre', 'ManeuverToFinalID', 'ManeuverToFinalID_DisplayEng', 'ManeuverToFinalID_DisplayFre', 'Elevation', 'OsLengthTotal', 'OsLengthAvailable', 'OsLengthUtilized', 'OsWidthTotal', 'OsWidthAvailable', 'TouchdownCentrelineEnum', 'TouchdownCentrelineEnum_DisplayEng', 'TouchdownCentrelineEnum_DisplayFre', 'FinalCentrelineEnum', 'FinalCentrelineEnum_DisplayEng', 'FinalCentrelineEnum_DisplayFre']
+80% count: 27
+
+Columns with 70-80% null value rates: ['ICAOCategoryID', 'ICAO_DisplayEng', 'ICAO_DisplayFre', 'SafetyCommIssuedEnum']
+70% count: 4
+
+Columns with 60-70% null value rates: []
+60% count: 0
+
+Columns with 50-60% null value rates: ['AirportID', 'AirportID_AirportName', 'AirportID_CountryID', 'AirportID_CountryID_DisplayEng', 'AirportID_CountryID_DisplayFre', 'Airport_ProvinceID', 'AirportID_ProvinceID_DisplayEng', 'AirportID_ProvinceID_DisplayFre', 'Location', 'ICAO', 'CommonName']
+50% count: 11
+
+Columns with 40-50% null value rates: ['OccIncidentTypeID', 'OccIncidentTypeID_DisplayEng', 'OccIncidentTypeID_DisplayFre', 'SeriousIncidentEnum', 'SeriousIncidentEnum_DisplayEng', 'SeriousIncidentEnum_DisplayFre']
+40% count: 6
+
+Columns with 30-40% null value rates: []
+30% count: 0
+
+Columns with 20-30% null value rates: ['TsbInvolveID', 'TsbInvolveID_DisplayEng', 'TsbInvolveID_DisplayFre', 'TimeZoneID', 'TimeZoneID_DisplayEng', 'TimeZoneID_DisplayFre']
+20% count: 6
+
+Columns with 10-20% null value rates: ['LocationDescription']
+10% count: 1
+
+Columns with 0-10% null value rates: ['OccID', 'OccNo', 'Latitude', 'LatEnum', 'LatEnum_DisplayEng', 'LatEnum_DisplayFre', 'Longitude', 'LongEnum', 'LongEnum_DisplayEng', 'LongEnum_DisplayFre', 'CountryID', 'CountryID_DisplayEng', 'CountryID_DisplayFre', 'OccClassID', 'OccClassID_DisplayEng', 'OccClassID_DisplayFre', 'OccDate', 'OccRegionID', 'OccRegionID_DisplayEng', 'OccRegionID_DisplayFre', 'OccTime', 'OccTypeID', 'OccTypeID_DisplayEng', 'OccTypeID_DisplayFre', 'PositionTypeEnum', 'PositionTypeEnum_DisplayEng', 'PositionTypeEnum_DisplayFre', 'ProvinceID', 'ProvinceID_DisplayEng', 'ProvinceID_DisplayFre', 'InitTSBNotifDate', 'ReportedByID', 'ReportedByID_DisplayEng', 'ReportedByID_DisplayFre', 'RespRegionID', 'RespRegionID_DisplayEng', 'RespRegionID_DisplayFre', 'Summary', 'TotalFatalCount', 'TotalMinorCount', 'TotalNoneCount', 'TotalSeriousCount', 'TotalUnknownCount', 'NoAircraftInvolved', 'InjuriesEnum', 'InjuriesEnum_DisplayEng', 'InjuriesEnum_DisplayFre', 'DeployedEnum', 'DeployedEnum_DisplayEng', 'DeployedEnum_DisplayFre']
+0% count: 50
+
+Total column count: 242
+Total row count: 52742
