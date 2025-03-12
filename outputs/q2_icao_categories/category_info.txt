@@ -1,0 +1,5 @@
+Unique ICAO categories: <IntegerArray>
+[29, 28,  4, 19, 25, 14, 12, 23,  1, 26, 30, 16, 17, 11, 35,  8, 36, 20, 34,
+ 18,  2,  6,  5,  7, 24, 32, 33, 22,  9, 13, 10, 27, 31,  3, 21, 15]
+Length: 36, dtype: Int64
+Unique categories count: 36

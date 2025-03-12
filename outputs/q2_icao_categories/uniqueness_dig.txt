@@ -1,0 +1,8 @@
+Total row count: 21469
+Count of null values in 'AirportID_AirportName' column: 0
+Count of null values in 'ICAOCategoryID' column: 0
+Count unique combos OccID and ICAOCategoryID: 21220
+Count of unique combos OccDate and OccNo: 20285
+Count of unique combos of OccDate and OccID: 20285
+Count of unique OccID values: 20285
+Count of unique OccNo values: 20285

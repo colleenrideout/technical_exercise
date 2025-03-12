@@ -1,0 +1,4 @@
+Unique incident types: <IntegerArray>
+[1, 11, 16, 3, 19, 2, 5, 15, 14, 10, 7, 6, 18, 17, 4, 8, 13, 12, 9]
+Length: 19, dtype: Int64
+Unique types count: 19
