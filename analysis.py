@@ -61,7 +61,7 @@ def report_missing_values(df: pd.DataFrame):
     plt.savefig('outputs/q1_completeness/low_null_value_rates.png')
     plt.clf()
 
-    # output lists of columns per null value rate
+    # output lists of null value rates and info
     columns_with_100_nulls = null_value_rates[null_value_rates == 100].index.tolist()
     c_100 = f"Columns with 100% null value rates: {columns_with_100_nulls}."
     count_100 = f"100% count: {len(columns_with_100_nulls)}"
@@ -95,6 +95,9 @@ def report_missing_values(df: pd.DataFrame):
     b_0 = null_value_rates.between(0, 10, inclusive='left')
     columns_0 = f"Columns with 0-10% null value rates: {b_0[b_0].index.tolist()}"
     count_0 = f"0% count: {len(b_0[b_0].index.tolist())}"
+    total_null_count = f"Total null count: {df.isnull().sum().sum()}"
+    total_cells = f"Total cells: {df.size}"
+    empty_cell_percent = f"Empty cell percentage: {(df.isnull().sum().sum()/df.size) * 100}"
     total_column_count = f"Total column count: {df.shape[1]}"
     total_row_count = f"Total row count: {df.shape[0]}"
 
@@ -121,8 +124,11 @@ def report_missing_values(df: pd.DataFrame):
         file.write(count_10 + '\n\n')
         file.write(columns_0 + '\n')
         file.write(count_0 + '\n\n')
+        file.write(total_null_count + '\n')
+        file.write(total_cells + '\n')
+        file.write(empty_cell_percent + '\n')
         file.write(total_column_count + '\n')
-        file.write(total_row_count + '\n')
+        file.write(total_row_count)
 
 """ Creates csv with general summary statistics. """
 def report_summary_statistics(df: pd.DataFrame):

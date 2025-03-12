@@ -14,9 +14,9 @@ the table in more expensive modeling workflows, or joining with other large data
 checks I performed as a starting off point. 
 
 #### 1. Null Values
-A number of columns appear to be empty (or near empty) of datapoints. I wasn't sure if this was due to it being a public 
-version of the data. As a quick sanity check, I validated the number of columns reported in this table equals the column 
-count of the data (242 features).
+It looks like about 70% of the dataset is empty (8,963,777 of 12,763,564 cells). A number of columns appear to be empty 
+(or near empty) of datapoints. I wasn't sure if this was due to it being a public version of the data. As a quick sanity 
+check, I validated the number of columns reported in this table equals the column count of the data (242 features).
 
 _note: ranges are left-inclusive, right-exclusive_
 
@@ -36,6 +36,9 @@ _note: ranges are left-inclusive, right-exclusive_
 
 <img src="outputs/q1_completeness/null_value_distribution.png">
 <img src="outputs/q1_completeness/low_null_value_rates.png">
+
+I also pulled some information for columns that have lower null value rates. Given this is a relatively small dataset 
+with 52,742 rows, these columns would be contributing a greater weight of information during an analysis.
 
 #### Record Dates 
 Another method I like to use to see the completeness of data is to review the frequency of new records (e.g. the count 

@@ -31,5 +31,8 @@ Columns with 10-20% null value rates: ['LocationDescription']
 Columns with 0-10% null value rates: ['OccID', 'OccNo', 'Latitude', 'LatEnum', 'LatEnum_DisplayEng', 'LatEnum_DisplayFre', 'Longitude', 'LongEnum', 'LongEnum_DisplayEng', 'LongEnum_DisplayFre', 'CountryID', 'CountryID_DisplayEng', 'CountryID_DisplayFre', 'OccClassID', 'OccClassID_DisplayEng', 'OccClassID_DisplayFre', 'OccDate', 'OccRegionID', 'OccRegionID_DisplayEng', 'OccRegionID_DisplayFre', 'OccTime', 'OccTypeID', 'OccTypeID_DisplayEng', 'OccTypeID_DisplayFre', 'PositionTypeEnum', 'PositionTypeEnum_DisplayEng', 'PositionTypeEnum_DisplayFre', 'ProvinceID', 'ProvinceID_DisplayEng', 'ProvinceID_DisplayFre', 'InitTSBNotifDate', 'ReportedByID', 'ReportedByID_DisplayEng', 'ReportedByID_DisplayFre', 'RespRegionID', 'RespRegionID_DisplayEng', 'RespRegionID_DisplayFre', 'Summary', 'TotalFatalCount', 'TotalMinorCount', 'TotalNoneCount', 'TotalSeriousCount', 'TotalUnknownCount', 'NoAircraftInvolved', 'InjuriesEnum', 'InjuriesEnum_DisplayEng', 'InjuriesEnum_DisplayFre', 'DeployedEnum', 'DeployedEnum_DisplayEng', 'DeployedEnum_DisplayFre']
 0% count: 50
 
+Total null count: 8963777
+Total cells: 12763564
+Empty cell percentage: 70.22942024657063
 Total column count: 242
 Total row count: 52742
