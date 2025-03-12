@@ -27,7 +27,7 @@ def get_read_params() -> Tuple[dict, list, dict]:
                              'type': ['object', 'object']})
     data_dict_df = pd.concat([data_dict_df, new_rows], ignore_index=True)
 
-    # remove occurrence table date/time columns
+    # remove occurrence table date/time columns for separate parsing
     datetime_cols = data_dict_df[data_dict_df['type'].isin(['datetime2', 'date', 'time'])]['name'].tolist()
     dtype_dict = dict(zip(data_dict_df.name, data_dict_df.type))
     for col in datetime_cols:
@@ -126,8 +126,12 @@ def report_missing_values(df: pd.DataFrame):
 
 """ Creates csv with general summary statistics. """
 def report_summary_statistics(df: pd.DataFrame):
-    # df summary
-    df.describe().to_csv('outputs/q1_completeness/data_summary.csv', index=True)
+    # summarize interesting features
+    interesting_df = df[['AirportID_CountryID', 'ICAO', 'CountryID', 'Distance', 'ICAOCategoryID',
+                         'OccClassID', 'OccDate', 'OccIncidentTypeID', 'OccRegionID', 'OccTime', 'OccTypeID',
+                         'SeriousIncidentEnum', 'Summary', 'TotalFatalCount', 'TotalMinorCount', 'TotalNoneCount',
+                         'TotalSeriousCount', 'TotalUnknownCount']]
+    interesting_df.describe().to_csv('outputs/q1_completeness/data_summary.csv', index=True)
 
 """ Creates record frequency reports for Occurrences table. """
 def report_record_dates(df: pd.DataFrame):
@@ -170,7 +174,7 @@ def report_completeness():
                      .replace('NULL', pd.NA)
                      .replace('null', pd.NA))
 
-    # report_summary_statistics(occurrence_df)
+    report_summary_statistics(occurrence_df)
     report_missing_values(occurrence_df)
     report_record_dates(occurrence_df)
 
