@@ -70,10 +70,16 @@ guessing this is due to lengthy reporting cycles, and would use caution analyzin
 (especially those which aggregate values).
 
 #### Summary Statistics
-I originally wrote a function to pull summary statistics for this dataset, but I commented it out because I was having
-issues running it with the amount of memory on my machine.
+I would like to spend more time exploring the data, especially the following columns: 'AirportID_CountryID', 'ICAO', 
+'CountryID', 'Distance', 'ICAOCategoryID', 'OccClassID', 'OccDate', 'OccIncidentTypeID', 'OccRegionID', 'OccTime', 
+'OccTypeID', 'SeriousIncidentEnum', 'Summary', 'TotalFatalCount', 'TotalMinorCount', 'TotalNoneCount', 
+'TotalSeriousCount', 'TotalUnknownCount'.
 
-### Recommendations
+I pulled some [general summary statistics](outputs/q1_completeness/data_summary.csv) for this subset of the dataset, 
+but ideally I'd employ more user-friendly visualization and summary libraries to look for relationships in the data, 
+their structure/values, patterns and trends.
+
+### Next Steps
 Libraries such as [ydata-profiling](https://docs.profiling.ydata.ai/latest/) would be nice to use here to quickly build 
 some summary and visual information about the dataset. The cardinality of the data is high. Having more information 
 about the expected use case, or speaking with a subject matter expert about which features are more critical or 
@@ -87,10 +93,10 @@ the values were parsed correctly. For important categorical features, I would ha
 range of categories (e.g. that "unknown" and "UNKNOWN" are cleaned so they are not considered as separate categories of 
 a feature value). 
 
-After doing this initial peek at the data, I would have like to explore the subgroups in the different ICAO categories 
-more to better understand the representation of events in general and the rates of different values. It would also be
-interesting to investigate frequency of events over time, event type, event location, event time, and event outcome. 
-To get a better sense of the rate of events in general, I would also like to pull in another dataset on general flight 
+I would like to explore the subgroups in different ICAO categories to better understand the representation of 
+events and rates of different values. It would be interesting to perform a more thorough EDA (as discussed above) to look
+at event counts, types, locations, times, and outcomes. 
+To get a better sense of the rate of events in general, it could be useful to pull in another dataset on general flight 
 frequency and maybe maintenance logs.
 
 
