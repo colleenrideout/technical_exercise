@@ -102,6 +102,179 @@ at event counts, types, locations, times, and outcomes.
 To get a better sense of the rate of events in general, it could be useful to pull in another dataset on general flight 
 frequency and maybe maintenance logs.
 
+## 5. ICAO Event Categories
+### Prompt
+What ICAO event categories are most common at Canadian airports? Is there any trend or pattern evident in these
+Canadian events?
+
+### Data Peek
+The Occurrences table is definitely relevant here. It may also be useful to pull the Aircraft and Events and Phases 
+tables, but for the sake of time I'll start with Occurrences.
+
+Skim data dictionary for relevant columns to explore...
+
+| Column Name                     | Data Type        | Description                                                                                                                                                           |
+|---------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| AirportID_CountryID_DisplayEng  | varchar (object) | Airport country (English).                                                                                                                                            |
+| AirportID_CountryID             | int              | Category label for a particular airport country.                                                                                                                      |
+| Airport_ProvinceID              | int              | Category label for a particular airport province.                                                                                                                     |
+| AirportID_ProvinceID_DisplayEng | varchar (object) | Airport province (English).                                                                                                                                           |
+| AirportID_AirportName           | varchar (object) | Airport identification number airport name. Name of occurrence airport, or airport used as reference to the occurrence location.                                      |
+| AirportID                       | int              | Airport identification number                                                                                                                                         |
+| LandingTakeOffLocation          | varchar (object) | The International Civil Aviation Organization (ICAO) airport/aerodrome abreviations identifying the geographic location for the occurrence landing/takeoff.           |
+| LocationDescription             | varchar (object) | The location of the occurrence _if not at the airport_.                                                                                                               |
+| Location                        | varchar (object) | The location of the occurrence.                                                                                                                                       |
+| ICAOCategoryID                  | int              | Category label for ICAO category.                                                                                                                                     |
+| ICAO_DisplayEng                 | varchar (object) | ICAO occurrence category, in English. _For one occurrence, multiple ICAO categories may be assigned, that will generate multiple entries/rows_.                       |
+| OccID                           | int              | Occurrence ID number.                                                                                                                                                 |
+| OccNo                           | varchar (object) | Occurrence number (unique occurrence number for general reference).                                                                                                   |                                                                                                                                                                       |
+| OccDate                         | date             | The occurrence date in the format YYYY-MM-DD.                                                                                                                         |
+| OccTime                         | time             | The time the occurrence happenedin the format hh:mm (24-hour clock).                                                                                                  |
+| OccIncidentTypeID               | int              | Category label for OccIncidentType category.                                                                                                                          |
+| OccIncidentTypeID_DisplayEng    | varchar (object) | If the occurrence is a reportable incident, the type of incident as defined in the Transportation Safety Board Regulations, Part 1, Subparagraph 2(1)(b), in English. |
+
+_notes from data dictionary review_: 
+- Make sure I'm reviewing only events at a Canadian airport.
+- Multiple ICAO categories can be assigned to a particular event - make sure I group rows/events correctly. Review how ID columns work!
+- _Transportation Safety Board Regulations, Part 1, Subparagraph 2(1)(b)_ may be a relevant external document.
+- Checkout weather.
+- Checkout aircraft make/model. 
+- Checkout specific airports.
+- Checkout specific time of year.
+- Checkout specific time of day.
+- Checkout specific time of week.
+
+### Mini Exploration
+
+There appears to be 36 unique ICAO categories matching a Canadian AirportID. There are 12,752 rows with null values.
+I'd need to look at a sample of those rows to get an idea of how to deal with them (i.e. remove them, or stick them 
+under another category), but for now I'll just assign an ID of 36 and value of "UNKNOWN OR UNDETERMINED (UNK)" since it 
+already exists.
+
+| ICAOCategoryID | ICAO_DisplayEng                                                                      | 
+|----------------|--------------------------------------------------------------------------------------|
+| 1              | ABNORMAL RUNWAY CONTACT (ARC)                                                        |
+| 2              | ABRUPT MANEUVER (AMAN)                                                               |
+| 3              | AERODROME (ADRM)                                                                     |
+| 4              | AIRPROX/TCAS ALERT/LOSS OF SEPARATION/NEAR MIDAIR COLLISIONS/MIDAIR COLLISIONS (MAC) |
+| 5              | ATM/CNS (ATM)                                                                        |
+| 6              | BIRD (BIRD)                                                                          |
+| 7              | CABIN SAFETY EVENTS (CABIN)                                                          |
+| 8              | COLLISION WITH OBSTACLE(S) DURING TAKEOFF AND LANDING (CTOL)                         |
+| 9              | CONTROLLED FLIGHT INTO OR TOWARD TERRAIN (CFIT)                                      |
+| 10             | EVACUATION (EVAC)                                                                    |
+| 11             | EXTERNAL LOAD RELATED OCCURRENCES (EXTL)                                             |
+| 12             | FIRE/SMOKE (NON-IMPACT) (F–NI)                                                       |
+| 13             | FIRE/SMOKE (POST-IMPACT) (F–POST)                                                    |
+| 14             | FUEL RELATED (FUEL)                                                                  |
+| 15             | GLIDER TOWING RELATED EVENTS (GTOW)                                                  |
+| 16             | GROUND COLLISION (GCOL)                                                              |
+| 17             | GROUND HANDLING (RAMP)                                                               |
+| 18             | ICING (ICE)                                                                          |
+| 19             | LOSS OF CONTROL–GROUND (LOC–G)                                                       |
+| 20             | LOSS OF CONTROL–INFLIGHT (LOC–I)                                                     |
+| 21             | LOSS OF LIFTING CONDITIONS EN ROUTE (LOLI)                                           |
+| 22             | LOW ALTITUDE OPERATIONS (LALT)                                                       |
+| 23             | MEDICAL (MED)                                                                        | 
+| 24             | NAVIGATION ERRORS (NAV)                                                              |
+| 25             | RUNWAY EXCURSION (RE)                                                                |
+| 26             | RUNWAY INCURSION (RI)                                                                | 
+| 27             | SECURITY RELATED (SEC)                                                               |
+| 28             | SYSTEM/COMPONENT FAILURE OR MALFUNCTION (NON-POWERPLANT) (SCF–NP)                    |
+| 29             | SYSTEM/COMPONENT FAILURE OR MALFUNCTION (POWERPLANT) (SCF–PP)                        | 
+| 30             | TURBULENCE ENCOUNTER (TURB)                                                          | 
+| 31             | UNDERSHOOT/OVERSHOOT (USOS)                                                          |
+| 32             | UNINTENDED FLIGHT IN IMC (UIMC)                                                      |
+| 33             | WILDLIFE (WILD)                                                                      |
+| 34             | WIND SHEAR OR THUNDERSTORM (WSTRW)                                                   |
+| 35             | OTHER (OTHR)                                                                         |
+| 36             | UNKNOWN OR UNDETERMINED (UNK)                                                        | 
+
+
+There appears to be 18 unique occurrence incident types matching a Canadian AirportID. I'll assign an ID of 19 and 
+value of "UNKNOWN" to rows with null values for now.
+
+| 'OccIncidentTypeID' | 'OccIncidentTypeID_DisplayEng'      |
+|---------------------|-------------------------------------|
+| 1                   | ENGINE (i)                          | 
+| 2                   | SMOKE OR FIRE (iii)                 |
+| 3                   | DIFFICULT TO CONTROL (iv)           |
+| 4                   | RUNWAY EXCURSION (v)                |
+| 5                   | UNABLE TO PERFORM (vi)              |
+| 6                   | DEPRESSURIZATION (vii)              | 
+| 7                   | FUEL SHORTAGE (viii)                |
+| 8                   | INCORRECT / CONTAMINATED FUEL(ix)   |
+| 9                   | J. ROC / LOS                        |
+| 10                  | SLUNG LOAD RELEASED (xii)           | 
+| 11                  | EMERGENCY/PRIORITY (xi)             |
+| 12                  | DANGEROUS GOODS RELEASED (xii)      |
+| 13                  | TRANSMISSION GEARBOX (ii)           |
+| 14                  | COLLISION (x)                       | 
+| 15                  | RISK OF COLLISION (x)               |
+| 16                  | LOSS OF SEPARATION (x)              |
+| 17                  | LANDING GEAR RETRACTED/COLLAPSED(v) |
+| 18                  | DRAGS ANY PART ON GROUND (v)        | 
+| 19                  | UNKNOWN                             |
+
+After seeing that multiple ICAO categories may be assigned to a particular event, I tried to pull information on how
+this data is reflected or captured. Note these values were pulled on the Canadian airport subset:
+- Total row count: 21,469
+- Count of unique combinations of OccID and ICAOCategoryID: 21,220
+- Count of unique combinations of OccDate and OccNo: 20,285
+- Count of unique combinations of OccDate and OccID: 20,285
+- Count of unique OccID values: 20,285
+- Count of unique OccNo values: 20,285
+
+From what I can tell, there are 935 rows that may represent occurrences with multiple ICAO categories assigned (or I am 
+otherwise not considering correctly). In any case, there are 249 rows that I am not sure how to account for. 
+I'm not totally sure what combination of column values are used to isolate a unique occurrence 
+event from others where multiple categories apply, but it's a small enough percentage that for now I will move on.
+
+I wasn't sure how to ensure that I'm only reporting events that occurred specifically at an airport. I considered 
+removing rows containing a value in the 'LocationDescription' column, but wasn't super confident doing so without
+spening more time understanding the dataset. For now I'll do some analyses as-is. 
+
+<img src="outputs/q2_icao_categories/event_freq_per_month.png">
+
+July appears to have occurrences more frequently than other months (note this graph is an aggregate of all years).
+
+<img src="outputs/q2_icao_categories/event_freq_per_year.png">
+
+I'm not sure if there were actually less incidents before the 90s because flying was less common, or if that reflects 
+improvements in the gathering and reporting of data. Incidents seemed to drop during the recession and covid.
+
+<img src="outputs/q2_icao_categories/icao_trends.png">
+
+Again, this data needs to be broken down further, but it appears there was a big shift in the most common ICAO 
+categories between 2010 - 2020. This could be a change in how events are classified into categories, or some shift in 
+procedure or safety standard maybe?
+
+### Trends
+This is by no means a conclusive analysis, but I've spent the allotted time and will show what I've gathered so far. 
+I filtered the data to only explore years after 2009.
+
+<img src="outputs/q2_icao_categories/event_freq_per_year_gt_2009.png">
+
+<img src="outputs/q2_icao_categories/icao_trends_gt_2009.png">
+
+The color selection of the legend makes it a little hard to see, but it looks like the shift I described above might be
+due to differences in how events were classified into ICAO categories. It looks like the category "NAVIGATION ERRORS" 
+may have been broken down into subcategories (e.g. CFIT, LOC-I, etc.), which is why the frequency of those events 
+flipped at what looks to be a point in time. This is just a hunch though.
+
+<img src="outputs/q2_icao_categories/icao_trends_2024.png">
+
+I attempted to filer the legend values to only display the more common datapoints. If I did that correctly, it 
+appears the most common ICAO category last year was "SYSTEM/COMPONENT FAILURE OR MALFUNCTION (NON-POWERPLAN) (SCF-NP)."
+
+### Next Steps
+Next steps would be to look a little more closely at a sample to ensure I'm filtering the data correctly. 
+
+In terms of digging deeper into trends, it'd be worthwhile to look at the most common categories year over year, to 
+get a sense of which ones have changed the most, or been overcome by others. Then, after isolating those categories 
+which have shifted in frequency, I would look at things like weather and seasonal patterns, time of day, week and month, 
+and maybe break the data down into specific airports and aircraft models depending on how things look as I go. 
+
 
 
 
