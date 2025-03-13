@@ -1,9 +1,12 @@
 import pandas as pd
 
 from typing import Tuple
+from sklearn.model_selection import train_test_split, cross_validate
+from sklearn.metrics import f1_score, make_scorer, accuracy_score, classification_report
 
 from completeness import report_missing_values, report_summary_statistics, report_record_dates
 from categories import get_icao_categories, get_incident_types, explore_data_capture, trend_analysis, zoom_analysis
+from model import filter_data, output_info, get_model
 
 
 """ Returns data dictionary and parsing parameters for ASIS datasets. """
@@ -86,9 +89,46 @@ def report_icao_categories():
     trend_analysis(can_air_df)
     zoom_analysis(can_air_df)
 
+def survival_model():
+    occurrence_df = load_occurrences()
+
+    occurrence_df.fillna({'OccIncidentTypeID': 19, 'OccIncidentTypeID_DisplayEng': 'UNKNOWN',
+                          'ICAOCategoryID': 36, 'ICAO_DisplayEng': "UNKNOWN OR UNDETERMINED (UNK)"},
+                             inplace=True)
+
+    mini_df = filter_data(occurrence_df)
+    output_info(mini_df)
+
+    train_df, test_df = train_test_split(mini_df, test_size=0.2, random_state=42)
+
+    X_train, y_train = (train_df.drop(columns=['TotalFatalCount']), train_df['TotalFatalCount'])
+    X_test, y_test = (test_df.drop(columns=['TotalFatalCount']),test_df['TotalFatalCount'])
+
+    custom_scorer = make_scorer(f1_score, average="macro")  # class imbalance
+
+    model = get_model()
+    scores = cross_validate(model, X_train, y_train, return_train_score=True, cv=5)
+    score_output = f"Cross Validation Results: {scores}"
+    model.fit(X_train, y_train)
+    predictions = model.predict(X_test)
+
+    accuracy = accuracy_score(y_test, predictions)
+    accuracy_output = f"Accuracy score: {accuracy}"
+    macro_f1 = f1_score(y_test, predictions, average='macro')
+    macro_f1_output = f"Macro F1 score: {macro_f1}"
+    class_report = classification_report(y_test, predictions)
+    class_report_output = f"Classification report: \n {class_report}"
+
+    with open('outputs/q3_survival_model/model_results.txt', 'w') as file:
+        file.write(score_output + '\n')
+        file.write(accuracy_output + '\n')
+        file.write(macro_f1_output + '\n')
+        file.write(class_report_output + '\n')
+
 
 
 if __name__ == "__main__":
     report_completeness()
     report_icao_categories()
+    survival_model()
 

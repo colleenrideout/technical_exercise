@@ -275,6 +275,43 @@ get a sense of which ones have changed the most, or been overcome by others. The
 which have shifted in frequency, I would look at things like weather and seasonal patterns, time of day, week and month, 
 and maybe break the data down into specific airports and aircraft models depending on how things look as I go. 
 
+## 4. Safety Incident Survival
+### Prompt
+Develop a model that predicts the probability of surviving a safety incident. What are the key factors associated with
+survivability? What are the strengths and weaknesses of your analysis and what would your next steps be with this 
+model? 
+
+### Model Selection
+Logistic regression immediately comes to mind since it's a simpler model to use, we're trying to predict a binary category, 
+and I can easily pull coefficients to get an idea of how much each feature might be contributing to the 
+predicted value. I also think simpler models are good places to start when I'm less familiar with the dataset or domain.
+
+To make the dataset a little easier to work with I dropped columns that had >80% null value rates. I also dropped columns
+with text values that would require language processing, and treated most columns as categorical without verification. 
+
+I treated "TotalFatalCount" as the target, applied OHE to categorical features, and didn't spend time tuning hyperparameters
+or carefully considering appropriate scoring for the nature of the target data.
+
+### Model Performance
+See [model results](outputs/q3_survival_model/model_results.txt) for training results and test scoring.
+During cross validation, the train and test scores were inflated due to class imbalance in the dataset. 
+When predicting on the test dataset, the following scores were attained from the predictions:
+- Accuracy score: 0.9545928524030713
+- Macro F1 score: 0.415022012532687
+
+The classification report is not surprising. The model was really good at predicting no fatalities since this 
+represented the overwhelming majority of cases in the dataset. It was also very good at predicting a high number of 
+fatalities, but performed very poorly anywhere between the two extremes. During data preprocessing, the target column should
+have been transformed into a boolean value representing "yes" or "no" to whether a given record would result in a fatality.
+
+### Next Steps
+Aside from preprocessing the data more carefully, I should have at least performed some tuning with the hyperparameter
+C (the trade-off between underfitting and overfitting). I could have also pulled feature weights and looked at 
+[shap](https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html)
+values to get a sense of which features were contributing strongly to incorrect predictions. Given the high number
+of columns in the dataset, narrowing down the more important features would limit the overall time allotted to processing, 
+and help direct some other features to possibly bring into the dataset or create with transformation logic.
+
 
 
 
